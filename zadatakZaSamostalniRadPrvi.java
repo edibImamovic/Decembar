@@ -21,14 +21,60 @@ public class zadatakZaSamostalniRad1 {
 		System.out.println("Unesite broj kolona"); // Unos broja kolona
 		int brojKolona = TextIO.getInt();
 
-		int[][] FunkcijaKreirajMatricu = kreirajMatricu(brojRedova, brojKolona); // funkcija u kojoj se unose clanovi matrice
-		ispisiMatricu(FunkcijaKreirajMatricu); // funkcija za ispis popunjene matrice
+		int[][] matrica1 = kreirajMatricu1(brojRedova, brojKolona); 
+		ispisiMatricu1(matrica1); 
+
+		int[][] matrica2 = kreirajMatricu2(brojRedova, brojKolona); 
+
+		int[][] sumaSabiranje = sabiranje(matrica1, matrica2);
+		ispisiMatricu1(sumaSabiranje);
+		
+		int[][] sumaOduzimanje = oduzimanje(matrica1, matrica2);
+		ispisiMatricu1(sumaOduzimanje);
 
 	}
 
-	private static void ispisiMatricu(int[][] funkcijaKreirajMatricu) {
+	private static int[][] sabiranje(int[][] matrica1, int[][] matrica2) {
 
-		System.out.println("Uneseni clanovi matrice: ");
+		int[][] sumaSabiranje = new int[matrica1.length][matrica2.length];
+
+		try {
+			for (int i = 0; i < matrica1.length; i++) {
+				for (int j = 0; j < matrica1[i].length; j++) {
+					sumaSabiranje[i][j] = matrica1[i][j] + matrica2[i][j];
+				}
+			}
+		} 
+		catch (IllegalArgumentException e) {
+			System.out.println("Matrice nije moguće sabrati");
+		}
+
+		return sumaSabiranje;
+
+	}
+
+	private static int[][] oduzimanje(int[][] matrica1, int[][] matrica2) {
+
+		int[][] sumaOduzimanje = new int[matrica1.length][matrica2.length];
+
+		try {
+			for (int i = 0; i < matrica1.length; i++) {
+				for (int j = 0; j < matrica1[i].length; j++) {
+					sumaOduzimanje[i][j] = matrica1[i][j] - matrica2[i][j];
+				}
+			}
+		} 
+		catch (IllegalArgumentException e) {
+			System.out.println("Matrice nije moguće oduzeti");
+		}
+
+		return sumaOduzimanje;
+
+	}
+	private static void ispisiMatricu1(int[][] funkcijaKreirajMatricu) {
+
+		System.out
+				.println("Clanovi niza /sabiranje/oduzimanje/mnozenje i unos: ");
 		for (int i = 0; i < funkcijaKreirajMatricu.length; i++) {
 			for (int j = 0; j < funkcijaKreirajMatricu[i].length; j++) {
 				System.out.printf("%d  ", funkcijaKreirajMatricu[i][j]);
@@ -40,13 +86,13 @@ public class zadatakZaSamostalniRad1 {
 
 	}
 
-	private static int[][] kreirajMatricu(int brojRedova, int brojKolona) {
+	private static int[][] kreirajMatricu1(int brojRedova, int brojKolona) {
 
 		int[][] kreiranjeMatrice = new int[brojRedova][brojKolona];
 
 		for (int i = 0; i < brojRedova; i++) {
 			for (int j = 0; j < brojKolona; j++) {
-				System.out.println("Unesite clanove matrice ");
+				System.out.println("Unesite clan prve matrice: ");
 				kreiranjeMatrice[i][j] = TextIO.getInt();
 			}
 		}
@@ -54,4 +100,31 @@ public class zadatakZaSamostalniRad1 {
 		return kreiranjeMatrice;
 	}
 
+	private static void ispisiMatricu2(int[][] funkcijaKreirajMatricu) {
+
+		System.out.println("Uneseni clanovi druge matrice su : ");
+		for (int i = 0; i < funkcijaKreirajMatricu.length; i++) {
+			for (int j = 0; j < funkcijaKreirajMatricu[i].length; j++) {
+				System.out.printf("%d  ", funkcijaKreirajMatricu[i][j]);
+			}
+			System.out.println(" ");
+		}
+
+		System.out.println(" ");
+
+	}
+
+	private static int[][] kreirajMatricu2(int brojRedova, int brojKolona) {
+
+		int[][] kreiranjeMatrice = new int[brojRedova][brojKolona];
+
+		for (int i = 0; i < brojRedova; i++) {
+			for (int j = 0; j < brojKolona; j++) {
+				System.out.println("Unesite clan druge matrice: ");
+				kreiranjeMatrice[i][j] = TextIO.getInt();
+			}
+		}
+
+		return kreiranjeMatrice;
+	}
 }
